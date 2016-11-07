@@ -1,5 +1,9 @@
-/* Score card for a player */
-class ScoreCard{
-	
+#include <iostream>
+#include "ScoreCard.hpp"
 
-};
+
+using namespace std;
+
+ScoreCard::ScoreCard(){
+	cout << "ScoreCard constructed" << endl;
+}

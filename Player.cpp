@@ -1,11 +1,16 @@
 /* A Yahtzee player.  Players each have a score card */
 #include <string>
+#include <iostream>
+#include "Player.hpp"
+#include "ScoreCard.hpp"
 
 using namespace std;
 
-class Player{
-	
-	string playerName;
+Player::Player(string playerName) : _playerName(playerName){
+	cout << "player constructor called\n";
+	ScoreCard *_scoreCard;
+}
 
-
-};
+string Player::getPlayerName(){
+	return _playerName;
+} 
