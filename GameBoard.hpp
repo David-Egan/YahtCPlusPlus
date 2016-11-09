@@ -11,7 +11,8 @@ class GameBoard{
 		int _dice[5];
 		int _playerAmount;
 		vector<Player> _players;
-		bool playerMovesRemaining();		
+		bool playerMovesRemaining();
+		void rollDice();		
 	public:
 		void setUpBoard();	
 		void playGame();		

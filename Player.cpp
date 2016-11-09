@@ -14,3 +14,35 @@ Player::Player(string playerName) : _playerName(playerName){
 string Player::getPlayerName(){
 	return _playerName;
 } 
+
+bool Player::isScoreCardFull(){
+
+}
+
+void Player::displayScoringOptions(){
+	_scoreCard->displayScoringOptions();
+}
+
+void Player::startTurn(){
+	int scoringSelection;
+
+	cout << "It is " << _playerName << "'s turn.\n" <<
+		"Press any key to roll your dice\n";
+	cin.ignore();
+	cin.get();
+
+
+	cout << "Choose how you want your dice to be scored" << endl;
+	// cin >> scoringSelection;
+	// rollDice();
+	
+	
+	// displayScoringOptions();
+	
+	//ScoreBoard.checkforoptions
+	//for each option print out  
+}
+
+void Player::rollDice(){
+
+}

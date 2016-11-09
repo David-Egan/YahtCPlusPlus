@@ -17,7 +17,7 @@ void GameBoard::setUpBoard(){
 	cout << "The Gameboard has " << _playerAmount << " players" << endl;
 	
 	for (int i = 0; i < _playerAmount; ++i){
-		_players.push_back( Player(to_string(i)) );
+		_players.push_back( Player("Player" + to_string(i)) );
 	}
 
 
@@ -26,25 +26,34 @@ void GameBoard::setUpBoard(){
 		// [  (p._scoreCard->myMethod());  ] Example of how to call method from ScoreCard
 	}
 
-	
-
-	//while (playerMovesRemaining()){
-		//iterate through players
-			//prompt for roll
-			//prompt for scoring decision
-	//}
 }
 
 // Main game loop
 void GameBoard::playGame(){
-	cout << "Playing Game\n";	
-}
+	//while ( playerMovesRemaining()){
 	
-// Check if the players have moves left ie. scorecard has a spot
-// that can be filled. 
+
+		for ( Player p : _players){
+			p.startTurn();
+		}
+		
+}
+
+
+// // Check if the players have moves left ie. scorecard has a spot that can be filled. 
 bool GameBoard::playerMovesRemaining(){
 	cout << "Player Moves Remaining called\n";
+	for ( Player p : _players){
+			if (p.isScoreCardFull()){
+				return false;
+			}
+	
+	}
+
+	return true;
 }
+
+
 
 
 // Create board and other relevant entities to play the game.

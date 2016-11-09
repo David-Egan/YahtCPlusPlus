@@ -12,7 +12,11 @@ class Player{
 		std::string _playerName;
 	public:			
 		Player(std::string playerName);	
+		void startTurn();
 		string getPlayerName();
+		bool isScoreCardFull();
+		void displayScoringOptions();
+		void rollDice();
 };
 
 #endif
