@@ -6,9 +6,11 @@
 
 using namespace std;
 
-Player::Player(string playerName) : _playerName(playerName){
+Player::Player(string playerName, Dice *dice, GameBoard *gameBoard) 
+			: _playerName(playerName), _dice(dice), _gameBoard(gameBoard){	
+	_gameBoard = gameBoard;
 	cout << "player constructor called\n";
-	ScoreCard *_scoreCard;
+	ScoreCard _scoreCard(dice);
 }
 
 string Player::getPlayerName(){
@@ -33,8 +35,10 @@ void Player::startTurn(){
 
 
 	cout << "Choose how you want your dice to be scored" << endl;
-	// cin >> scoringSelection;
-	// rollDice();
+	displayScoringOptions();
+
+	cin >> scoringSelection;
+	//dice.rollDice();
 	
 	
 	// displayScoringOptions();

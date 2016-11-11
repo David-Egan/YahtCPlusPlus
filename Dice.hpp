@@ -3,11 +3,11 @@
 
 class Dice{
 	private:
-		int[6] Dice;
-
-
+		int _dice[6];
 	public:
 		void rollDice();
+		int getOnesValue();
+		Dice();
 };
 
 #endif

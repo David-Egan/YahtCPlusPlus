@@ -1,23 +1,23 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
 
+#include "Dice.hpp"
 #include "Player.hpp"
 #include <vector>
 
-using namespace std;
+class Player;
 
 class GameBoard{
 	private:
-		int _dice[5];
+		Dice _dice;
 		int _playerAmount;
-		vector<Player> _players;
+		std::vector<Player> _players;
 		bool playerMovesRemaining();
 		void rollDice();		
 	public:
 		void setUpBoard();	
 		void playGame();		
-		GameBoard(int playerAmount);
-
+		GameBoard(int playerAmount); 
 };
 
 #endif

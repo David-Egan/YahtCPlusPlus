@@ -1,29 +1,26 @@
 /* Game state holder especially including dice values */
 #include <iostream>
 #include "GameBoard.hpp"
-#include "ScoreCard.hpp"
 
 using namespace std;
 
 // GameBoard constructor.  Takes in amount of players who will be
 // playing with this board
 GameBoard::GameBoard(int playerAmount){
-	_playerAmount = playerAmount;
+	_playerAmount = playerAmount;	
 	cout << "GameBoard object constructed\n";
 }
 
 // Set up board for a game.
 void GameBoard::setUpBoard(){			
-	cout << "The Gameboard has " << _playerAmount << " players" << endl;
-	
+	cout << "The Gameboard has " << _playerAmount << " players" << endl;		
+
 	for (int i = 0; i < _playerAmount; ++i){
-		_players.push_back( Player("Player" + to_string(i)) );
+		_players.push_back( Player("Player" + to_string(i), &_dice, this) );
 	}
 
-
 	for (Player p : _players){
-		cout << "Player " << p.getPlayerName() << endl;
-		// [  (p._scoreCard->myMethod());  ] Example of how to call method from ScoreCard
+		cout << "Player " << p.getPlayerName() << endl;		
 	}
 
 }
@@ -31,7 +28,6 @@ void GameBoard::setUpBoard(){
 // Main game loop
 void GameBoard::playGame(){
 	//while ( playerMovesRemaining()){
-	
 
 		for ( Player p : _players){
 			p.startTurn();
@@ -49,6 +45,7 @@ bool GameBoard::playerMovesRemaining(){
 			}
 	
 	}
+
 
 	return true;
 }

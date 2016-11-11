@@ -4,7 +4,8 @@
 
 using namespace std;
 
-ScoreCard::ScoreCard(){
+ScoreCard::ScoreCard(Dice *dice){
+	_dice = dice;
 	cout << "ScoreCard constructed" << endl;
 }
 

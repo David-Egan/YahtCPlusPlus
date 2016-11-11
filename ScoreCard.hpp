@@ -1,17 +1,14 @@
 #ifndef SCORECARD_H
 #define SCORECARD_H
 
+#include "Dice.hpp"
+
 /* Score card for a player */
 class ScoreCard{
 	private:
-		bool onesScored = false;
-		bool twosScored = false;
-		bool threesScored = false;
-		bool foursScored = false;
-		bool fivesScored = false;
-		bool sixesScored = false;
+		Dice *_dice;				
 	public:			
-		ScoreCard();
+		ScoreCard(Dice *Dice);
 		void displayScoringOptions ();		
 };
 
