@@ -6,10 +6,10 @@
 /* Score card for a player */
 class ScoreCard{
 	private:
-		Dice *_dice;				
+		Dice *_dice;		
 	public:			
 		ScoreCard(Dice *Dice);
-		void displayScoringOptions ();		
+		void displayScoringOptions();
 };
 
 #endif

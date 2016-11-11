@@ -4,14 +4,11 @@
 
 using namespace std;
 
-// GameBoard constructor.  Takes in amount of players who will be
-// playing with this board
 GameBoard::GameBoard(int playerAmount){
 	_playerAmount = playerAmount;	
 	cout << "GameBoard object constructed\n";
 }
 
-// Set up board for a game.
 void GameBoard::setUpBoard(){			
 	cout << "The Gameboard has " << _playerAmount << " players" << endl;		
 
@@ -25,32 +22,24 @@ void GameBoard::setUpBoard(){
 
 }
 
-// Main game loop
 void GameBoard::playGame(){
 	//while ( playerMovesRemaining()){
-
 		for ( Player p : _players){
 			p.startTurn();
 		}
 		
 }
 
-
-// // Check if the players have moves left ie. scorecard has a spot that can be filled. 
 bool GameBoard::playerMovesRemaining(){
 	cout << "Player Moves Remaining called\n";
 	for ( Player p : _players){
 			if (p.isScoreCardFull()){
 				return false;
-			}
-	
+			}	
 	}
-
 
 	return true;
 }
-
-
 
 
 // Create board and other relevant entities to play the game.

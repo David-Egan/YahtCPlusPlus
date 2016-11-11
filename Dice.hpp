@@ -4,7 +4,7 @@
 class Dice{
 	private:
 		int _dice[6];
-	public:
+	public:		
 		void rollDice();
 		int getOnesValue();
 		Dice();

@@ -33,7 +33,6 @@ void Player::startTurn(){
 	cin.ignore();
 	cin.get();
 
-
 	cout << "Choose how you want your dice to be scored" << endl;
 	displayScoringOptions();
 
