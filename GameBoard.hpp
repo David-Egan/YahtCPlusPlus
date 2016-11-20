@@ -8,7 +8,7 @@
 class Player;
 
 class GameBoard{
-	private:
+	private:	
 		Dice _dice;
 		int _playerAmount;
 		std::vector<Player> _players;
