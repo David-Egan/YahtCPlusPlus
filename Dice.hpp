@@ -1,13 +1,12 @@
 #ifndef DICE_H
 #define DICE_H
 
+#include <array>
 #include <map>
 
 class Dice{
-	private:
-		// not using a vector just to
-		// get to know c arrays a little more
-		int  _dice[6];
+	private:		
+		std::array<int, 6> _dice;
 		int diceSize;
 		std::map<int, int> scoringValues;
 		// Sums for each dice value eg. 4 ones: {1:4},...		
@@ -16,11 +15,13 @@ class Dice{
 		// Change score values back to 0 before next update of their values.	
 		void resetScoreValues();
 		void createDice();
-	public:		
-		void rollDice();
-		// Get number a given die landed on
-		int getDieNumber(int die);
+	public:	
 		Dice();
+		int id;
+		void rollDice();
+		// Get number of times a die landed on a given number
+		int getValueFrequency(int die);
+		
 };
 
 #endif

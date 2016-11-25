@@ -3,17 +3,18 @@
 #include "GameBoard.hpp"
 
 using namespace std;
-
+//
 GameBoard::GameBoard(int playerAmount){
 	_playerAmount = playerAmount;	
 	cout << "GameBoard object constructed\n";
-}
+ }
 
 void GameBoard::setUpBoard(){			
 	cout << "The Gameboard has " << _playerAmount << " players" << endl;		
 
-	for (int i = 0; i < _playerAmount; ++i){
-		_players.push_back( Player("Player" + to_string(i), &_dice, this) );
+	for (int i = 0; i < _playerAmount; ++i){\
+		Player newPlayer = Player("Player #" + to_string(i), &_dice, this);
+		_players.push_back( newPlayer );
 	}
 
 	for (Player p : _players){
