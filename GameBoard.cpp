@@ -13,7 +13,7 @@ void GameBoard::setUpBoard(){
 	cout << "The Gameboard has " << _playerAmount << " players" << endl;		
 
 	for (int i = 0; i < _playerAmount; ++i){\
-		Player newPlayer = Player("Player #" + to_string(i), &_dice, this);
+		Player newPlayer = Player("Player #" + to_string(i), _dice, *this);
 		_players.push_back( newPlayer );
 	}
 

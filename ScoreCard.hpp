@@ -7,9 +7,9 @@
 /* Score card for a player */
 class ScoreCard{
 	private:
-		Dice *_dice;
+		Dice &_dice;
 	public:			
-		ScoreCard(Dice *Dice);
+		ScoreCard(Dice &dice);
 		void displayScoringOptions();
 };
 

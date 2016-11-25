@@ -6,7 +6,7 @@
 using namespace std;
 
 Dice::Dice(){
-	_dice = {{1,0,1,0,0,1}};
+	_dice = {{0,0,0,0,0,0}};
 
 	scoringValues = {{1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}};
 	diceSize = 6;
@@ -14,8 +14,9 @@ Dice::Dice(){
 
 void Dice::rollDice(){
 	cout << "Rolling Dice\n";		
-		
-	//TODO: try to shorten type definition for iterator
+	
+	// seed for random number generator
+	srand(time(NULL));	
 	for ( int i = 0; i < 6; ++i){
 	// Generate value between 1 and 6 '1 +' ensures it's never 0
 		int rollValue = 1 + (rand() % 6);

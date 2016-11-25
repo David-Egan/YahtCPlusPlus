@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Player::Player(string playerName, Dice *dice, GameBoard *gameBoard) 
+Player::Player(string playerName, Dice &dice, GameBoard &gameBoard) 
 			: _playerName(playerName), _dice(dice), _gameBoard(gameBoard),
 			  _scoreCard(ScoreCard(dice)){		
 	cout << "player constructor called\n";
@@ -30,7 +30,7 @@ void Player::startTurn(){
 		"Press ENTER to roll your dices";
 	cin.ignore();
 	cin.get();
-	_dice->rollDice();
+	_dice.rollDice();
 
 	cout << "Choose how you want your dice to be scored" << endl;
 	displayScoringOptions();
