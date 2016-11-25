@@ -27,7 +27,7 @@ void Player::startTurn(){
 	int scoringSelection;
 
 	cout << "It is " << _playerName << "'s turn.\n" <<
-		"Press ENTER to roll your dices";
+		"Press ENTER to roll your dice";
 	cin.ignore();
 	cin.get();
 	_dice.rollDice();

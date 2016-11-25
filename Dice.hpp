@@ -6,10 +6,9 @@
 
 class Dice{
 	private:		
-		std::array<int, 6> _dice;
-		int diceSize;
-		std::map<int, int> scoringValues;
-		// Sums for each dice value eg. 4 ones: {1:4},...		
+		std::array<int, 6> _dice;		
+		// Sums for each dice value eg. 4 ones: {1:4},...	
+		std::map<int, int> scoringValues;		
 		// Update values of scoring options based on current dice configuration.
 		void updateScoreValues();
 		// Change score values back to 0 before next update of their values.	
@@ -17,7 +16,7 @@ class Dice{
 		void createDice();
 	public:	
 		Dice();
-		int id;
+		const int DICE_AMOUNT  = 5;
 		void rollDice();
 		// Get number of times a die landed on a given number
 		int getValueFrequency(int die);

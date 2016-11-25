@@ -5,11 +5,10 @@
 
 using namespace std;
 
-Dice::Dice(){
-	_dice = {{0,0,0,0,0,0}};
 
+Dice::Dice(){
+	_dice = {{0,0,0,0,0}};
 	scoringValues = {{1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}};
-	diceSize = 6;
 }
 
 void Dice::rollDice(){
@@ -17,7 +16,7 @@ void Dice::rollDice(){
 	
 	// seed for random number generator
 	srand(time(NULL));	
-	for ( int i = 0; i < 6; ++i){
+	for ( int i = 0; i < DICE_AMOUNT; ++i){
 	// Generate value between 1 and 6 '1 +' ensures it's never 0
 		int rollValue = 1 + (rand() % 6);
 		_dice[i] = rollValue;
@@ -47,8 +46,6 @@ void Dice::resetScoreValues(){
 int Dice::getValueFrequency(int scoringOption){
 	return scoringValues[scoringOption];
 }
-
-//int getOnesValue
 
 //void isStraight()
 
