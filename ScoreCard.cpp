@@ -32,3 +32,7 @@ int ScoreCard::getChanceValue(){
 
 	return diceSum;
 }
+
+void ScoreCard::selectScoringOption(int selection){
+	cout << "In selectScoringOption()" << endl;
+}

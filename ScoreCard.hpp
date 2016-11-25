@@ -17,6 +17,7 @@ class ScoreCard{
 		int getValueSum(int value);
 		// Get score total of all 5 dice
 		int getChanceValue();
+		void selectScoringOption(int selection);
 };
 
 #endif

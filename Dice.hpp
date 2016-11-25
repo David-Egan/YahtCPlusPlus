@@ -2,6 +2,7 @@
 #define DICE_H
 
 #include <array>
+#include <vector>
 #include <map>
 
 class Dice{
@@ -17,7 +18,7 @@ class Dice{
 	public:	
 		Dice();
 		const int DICE_AMOUNT  = 5;
-		void rollDice();
+		void rollDice(std::vector<int> diceToKeep);
 		// Get number of times a die landed on a given number
 		int getValueFrequency(int die);
 		
