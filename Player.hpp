@@ -4,6 +4,7 @@
 #include "ScoreCard.hpp"
 #include "Dice.hpp"
 #include <string>
+#include <vector>
 
 class GameBoard;
 
@@ -14,6 +15,8 @@ class Player{
 		GameBoard &_gameBoard;
 		Dice &_dice;
 		std::string _playerName;
+		void makeScoringSelection(int &rollsLeft, std::vector<int> &diceToKeep);
+		void chooseDiceToKeep(std::vector<int> &diceToKeep);
 	public:
 		Player(std::string playerName, Dice &dice, GameBoard &gameBoard);	
 		// Begin this players turn
