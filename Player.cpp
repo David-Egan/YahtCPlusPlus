@@ -41,7 +41,9 @@ void Player::startTurn(){
 	while (rollsLeft > 0){				
 		rollsLeft--;
 
-		_dice.rollDice(diceToKeep);							
+		_dice.rollDice(diceToKeep);	
+		// reset vector for next selection of dice to keep
+		diceToKeep.clear();						
 		
 		cout << "Choose how you want your dice to be scored or Re-roll" << endl;
 		if (rollsLeft > 0 ) {
@@ -62,22 +64,24 @@ void Player::startTurn(){
 			     << " Enter 'f' when you are finished making your selections\n";
 					
 
-			while (!quit){
+			while (!quit && diceToKeep.size() < 4){
 				cin >> temp;
 
-				if (temp == "f" || diceToKeep.size() == 4 ){
+				if (temp == "f"){
 					quit = true;
 				}
 				else{
 					// convert string to int
 					diceToKeep.push_back(atoi(temp.c_str()));
 				}
-			}			
+			}
+			quit = false;			
 		}
 		else{	
 			_scoreCard.selectScoringOption(scoringSelection);
 			return;
-		}				
+		}
+							
 	}	
 
 

@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include <initializer_list>
+#include <algorithm>
 #include "Dice.hpp"
 
 using namespace std;
@@ -13,16 +14,20 @@ Dice::Dice(){
 
 //TODO: Don't roll dice in indexes that diceToKeep contain 
 // eg. if diceToKeep has a 0 then don't re-roll the first die
-void Dice::rollDice(vector<int> diceToKeep){
-	cout << "Rolling Dice\n";		
-	
+void Dice::rollDice(vector<int> diceToKeep){		
 	// seed for random number generator
 	srand(time(NULL));	
 	for ( int i = 0; i < DICE_AMOUNT; ++i){
+		if(!( std::find(diceToKeep.begin(), diceToKeep.end(), i+1) 
+				!= diceToKeep.end())){
 	// Generate value between 1 and 5 '1 +' ensures it's never 0
-		int rollValue = 1 + (rand() % DICE_AMOUNT);
-		_dice[i] = rollValue;
-	}	
+			int rollValue = 1 + (rand() % DICE_AMOUNT);
+			_dice[i] = rollValue;			
+		}
+		cout << "Die " << i+1 << ": [" <<  _dice[i] << "]" << "  ";
+	}
+	cout << endl;
+
 	updateScoreValues();	
 }
 
