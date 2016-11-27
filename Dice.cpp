@@ -54,6 +54,10 @@ int Dice::getValueFrequency(int scoringOption){
 	return scoringValues[scoringOption];
 }
 
-//void isStraight()
+// STUB
+bool isStraight(){
+	return true;
+}
+
 
 //void isYahtzee()

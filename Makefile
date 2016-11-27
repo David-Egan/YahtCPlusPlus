@@ -6,5 +6,5 @@ Dice.o: Dice.cpp Dice.hpp
 	g++ -c -std=c++1y Dice.cpp
 Player.o: Player.cpp Player.hpp ScoreCard.hpp Dice.hpp
 	g++ -c -std=c++1y Player.cpp 
-ScoreCard.o: ScoreCard.cpp ScoreCard.hpp Dice.hpp
+ScoreCard.o: ScoreCard.cpp ScoreCard.hpp Dice.hpp ScoreType.hpp
 	g++ -c -std=c++1y ScoreCard.cpp

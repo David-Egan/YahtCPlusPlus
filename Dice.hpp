@@ -21,7 +21,7 @@ class Dice{
 		void rollDice(std::vector<int> diceToKeep);
 		// Get number of times a die landed on a given number
 		int getValueFrequency(int die);
-		
+		bool isStraight();
 };
 
 #endif

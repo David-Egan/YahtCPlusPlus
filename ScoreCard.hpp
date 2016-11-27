@@ -2,12 +2,17 @@
 #define SCORECARD_H
 
 #include <map>
+#include <tuple>
 #include "Dice.hpp"
+#include "ScoreType.hpp"
 
 /* Score card for a player */
 class ScoreCard{
-	private:
+	private:		
 		Dice &_dice;
+		std::map<ScoreType, std::tuple<int, bool>> _scoringOptions;
+		std::map<ScoreType, int> _currOptionValues;
+		void initScoringOptionMap();
 	public:			
 		ScoreCard(Dice &dice);
 		// Show user all their options for scoring this turn

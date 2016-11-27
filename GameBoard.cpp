@@ -19,8 +19,7 @@ void GameBoard::setUpBoard(){
 
 	for (Player p : _players){
 		cout << "Player " << p.getPlayerName() << endl;		
-	}
-
+	}	
 }
 
 void GameBoard::playGame(){
