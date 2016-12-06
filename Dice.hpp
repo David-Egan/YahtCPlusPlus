@@ -5,6 +5,8 @@
 #include <vector>
 #include <map>
 
+// TODO: Make singleton with getInstance call that only allows 1 instance
+
 class Dice{
 	private:		
 		std::array<int, 6> _dice;		

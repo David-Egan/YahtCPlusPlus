@@ -7,6 +7,11 @@
 using namespace std;
 
 
+/* TODO: consider using the observer pattern to update ScoreCard
+   when Dice are rolled.  Concern with this is we would update 
+   all scorecards when we just need to update the current one.
+*/
+
 Dice::Dice(){
 	_dice = {{0,0,0,0,0}};
 	scoringValues = {{1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}};

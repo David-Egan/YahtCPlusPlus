@@ -24,7 +24,7 @@ void GameBoard::setUpBoard(){
 
 void GameBoard::playGame(){
 	//while ( playerMovesRemaining()){
-		for ( Player p : _players){
+		for ( Player p : _players){			
 			p.startTurn();
 		}
 		

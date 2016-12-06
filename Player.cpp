@@ -5,46 +5,46 @@
 
 using namespace std;
 
-Player::Player(string playerName, Dice &dice, GameBoard &gameBoard) 
+Player::Player(string playerName, Dice &dice, GameBoard &gameBoard)
 			: _playerName(playerName), _dice(dice), _gameBoard(gameBoard),
-			  _scoreCard(ScoreCard(dice)){		
+			  _scoreCard(ScoreCard(dice)){
 	cout << "player constructor called\n";
 }
 
 string Player::getPlayerName(){
 	return _playerName;
-} 
+}
 
 bool Player::isScoreCardFull(){
 
 }
 
 void Player::displayScoringOptions(){
-	_scoreCard.displayScoringOptions();	
+	_scoreCard.displayScoringOptions();
 }
 
-void Player::startTurn(){	
-	int rollsLeft = 3;	
+void Player::startTurn(){
+	int rollsLeft = 3;
 	vector<int> diceToKeep;
 
-	cout << "It is " << _playerName << "'s turn.\n";	
+	cout << "It is " << _playerName << "'s turn.\n";
 	cout << "Press ENTER to roll your dice";
 	cin.ignore();
-	cin.get();	
-	
+	cin.get();
+
 	_dice.rollDice(diceToKeep);
 	--rollsLeft;
 
-	while (rollsLeft >= 0){					
-		cout << "Choose how you want your dice to be scored or Re-roll" << endl;		
-		if (rollsLeft > 0 ) { cout << "0. Re-roll\n"; } 		
+	while (rollsLeft >= 0){
+		cout << "Choose how you want your dice to be scored or Re-roll" << endl;
+		if (rollsLeft > 0 ) { cout << "0. Re-roll\n"; }
 		displayScoringOptions();
 
 		cout << rollsLeft << " roll(s) left\n";
 		makeScoringSelection(rollsLeft, diceToKeep);
-		diceToKeep.clear();									
-	}	
-}	
+		diceToKeep.clear();
+	}
+}
 
 
 void Player::makeScoringSelection(int &rollsLeft, vector<int> &diceToKeep){
@@ -60,9 +60,9 @@ void Player::makeScoringSelection(int &rollsLeft, vector<int> &diceToKeep){
 
 	if (scoringSelection != 0){
 		_scoreCard.selectScoringOption(scoringSelection);
-		return;		
+		return;
 	}
-	else{	
+	else{
 		chooseDiceToKeep(diceToKeep);
 		_dice.rollDice(diceToKeep);
 		--rollsLeft;
@@ -74,8 +74,8 @@ void Player::chooseDiceToKeep(vector<int> &diceToKeep){
 		bool quit = false;
 		string temp;
 
-		cout << "Select the number under a die to keep it." 
-		     << " Enter 'f' when you are finished making your selections\n";				
+		cout << "Select the number under a die to keep it."
+		     << " Enter 'f' when you are finished making your selections\n";
 
 		while (!quit && diceToKeep.size() < 4){
 			cin >> temp;
@@ -83,11 +83,9 @@ void Player::chooseDiceToKeep(vector<int> &diceToKeep){
 			if (temp == "f"){
 				quit = true;
 			}
-			else{				
+			else{
 				diceToKeep.push_back(atoi(temp.c_str()));
 			}
 		}
-		quit = false;			
+		quit = false;
 }
-
-
