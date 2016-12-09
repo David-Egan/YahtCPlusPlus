@@ -31,17 +31,24 @@ void ScoreCard::updateOptionsValues(){
  	for (int i = 1; i <= _dice.DICE_AMOUNT; i++){
 	 	// The int repesents the scoring option so we can cast it here
 	 	ScoreType currScoreType = static_cast<ScoreType>(i);
+		_playerOptions[currScoreType].possibleValue  = getValueSum(i);
 	}
-
-	// If their conditions are met these scoring values are the sum of the dice
 	int sumOfDice = getSumOfDice();
 
+	_playerOptions[ScoreType::ThreeOfAKind].possibleValue =
+							_dice.hasThreeOfAKind() ? sumOfDice : 0;
+	_playerOptions[ScoreType::FourOfAKind].possibleValue =
+							_dice.hasFourOfAKind() ? sumOfDice : 0;
+	_playerOptions[ScoreType::FullHouse].possibleValue =
+							_dice.hasFullHouse() ? FULL_HOUSE_VAL : 0;
+	_playerOptions[ScoreType::SmallStraight].possibleValue =
+							_dice.hasSmallStraight() ? SMALL_STRAIGHT_VAL : 0;
+	_playerOptions[ScoreType::LargeStraight].possibleValue =
+							_dice.hasLargeStraight() ? LARGE_STRAIGHT_VAL : 0;
+	_playerOptions[ScoreType::Yahtzee].possibleValue =
+							_dice.hasYahtzee() ? YAHTZEE_VAL : 0;
+
 	_playerOptions[ScoreType::Chance].possibleValue = sumOfDice;
-	_playerOptions[ScoreType::ThreeOfAKind].possibleValue = sumOfDice;
-	_playerOptions[ScoreType::FourOfAKind].possibleValue = sumOfDice;
-
-	//TODO: rest of scoring options (Lower Section
-
 }
 
 int ScoreCard::getValueSum(int value){
@@ -85,12 +92,12 @@ void ScoreCard::initScoringOptions(){
 
 void ScoreCard::initPlayerOptions(){
 	// Score values based on certain dice value
-	_playerOptions[ScoreType::TwosSum] = {2, -1, false};
-	_playerOptions[ScoreType::AcesSum] = {1, -1, false};
-	_playerOptions[ScoreType::ThreesSum] = {3, -1, false};
-	_playerOptions[ScoreType::FoursSum] = {4, -1, false};
-	_playerOptions[ScoreType::FivesSum] = {5, -1, false};
-	_playerOptions[ScoreType::SixesSum] = {6, -1, false};
+	_playerOptions[ScoreType::AcesSum] = {0, -1, false};
+	_playerOptions[ScoreType::TwosSum] = {0, -1, false};
+	_playerOptions[ScoreType::ThreesSum] = {0, -1, false};
+	_playerOptions[ScoreType::FoursSum] = {0, -1, false};
+	_playerOptions[ScoreType::FivesSum] = {0, -1, false};
+	_playerOptions[ScoreType::SixesSum] = {0, -1, false};
 	// Score values based on sum
 	_playerOptions[ScoreType::ThreeOfAKind] = {0, -1, false};
 	_playerOptions[ScoreType::FourOfAKind] = {0, -1, false};

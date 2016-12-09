@@ -22,6 +22,11 @@ class ScoreCard{
 	private:
 		Dice &_dice;
 		// TODO: make this map static
+		// Constant score value, values
+		static const int FULL_HOUSE_VAL = 25;
+		static const int SMALL_STRAIGHT_VAL = 30;
+		static const int LARGE_STRAIGHT_VAL = 40;
+		static const int YAHTZEE_VAL = 50;
 		std::map<ScoreType, std::string> _scoringOptions;
 		std::map<ScoreType, PlayerScoreOption> _playerOptions;
 		void updateOptionsValues();
