@@ -25,6 +25,7 @@ void Player::displayScoringOptions(){
 
 void Player::startTurn(){
 	int rollsLeft = 3;
+	bool selectionMade = false;
 	vector<int> diceToKeep;
 
 	cout << "It is " << _playerName << "'s turn.\n";
@@ -35,39 +36,41 @@ void Player::startTurn(){
 	_dice.rollDice(diceToKeep);
 	--rollsLeft;
 
-	while (rollsLeft >= 0){
+	while (rollsLeft >= 0 && !selectionMade){
 		cout << "Choose how you want your dice to be scored or Re-roll" << endl;
 		if (rollsLeft > 0 ) { cout << "0. Re-roll\n"; }
 		displayScoringOptions();
 
 		cout << rollsLeft << " roll(s) left\n";
-		makeScoringSelection(rollsLeft, diceToKeep);
+		selectionMade = makeScoringSelection(rollsLeft, diceToKeep);
 		diceToKeep.clear();
 	}
 }
 
 
-void Player::makeScoringSelection(int &rollsLeft, vector<int> &diceToKeep){
+bool Player::makeScoringSelection(int &rollsLeft, vector<int> &diceToKeep){
 	int scoringSelection = 0;
 	string temp;
 	bool quit = false;
 
 	cin >> scoringSelection;
-	while (!rollsLeft && scoringSelection == 0){
-		cout << "No re-rolls left, choose a way to score your dice\n";
+
+	while ( (!rollsLeft && scoringSelection == 0) ||
+	 		!_scoreCard.scoringSelectionIsValid(scoringSelection)){
+		cout << "Pick a valid scoring option\n";
 		cin >> scoringSelection;
 	}
 
-	if (scoringSelection != 0){
-		_scoreCard.selectScoringOption(scoringSelection);
-		return;
-	}
-	else{
+	if (scoringSelection == 0){
 		chooseDiceToKeep(diceToKeep);
 		_dice.rollDice(diceToKeep);
 		--rollsLeft;
+		return false;
 	}
-
+	else{
+		_scoreCard.selectScoringOption(scoringSelection);
+		return true;
+	}
 }
 
 void Player::chooseDiceToKeep(vector<int> &diceToKeep){

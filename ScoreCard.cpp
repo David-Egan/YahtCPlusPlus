@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include "ScoreCard.hpp"
 
 using namespace std;
@@ -15,11 +16,11 @@ void ScoreCard::displayScoringOptions(){
 	auto scoreIt = _scoringOptions.begin();
 	auto playerIt = _playerOptions.begin();
 
-	cout << _scoringOptions.size() <<endl;
 	while (scoreIt != _scoringOptions.end()){
-		cout << scoreIt->first << ". " << scoreIt->second << "  ["
+		if (!playerIt->second.isScored){
+			cout << scoreIt->first << ". " << scoreIt->second << "  ["
 		 		 << playerIt->second.possibleValue << "]"    << endl;
-
+		 }
 				 scoreIt++;
 				 playerIt++;
 	}
@@ -71,7 +72,30 @@ int ScoreCard::getSumOfDice(){
 // add to that score and check if bonus is hit
 // same for upper
 void ScoreCard::selectScoringOption(int selection){
-	cout << "In selectScoringOption()" << endl;
+	ScoreType selectedScoreType = static_cast<ScoreType>(selection);
+
+	PlayerScoreOption scoreOption = _playerOptions[selectedScoreType];
+	scoreOption.isScored = true;
+	scoreOption.scoredValue = scoreOption.possibleValue;
+
+	totalScore += scoreOption.scoredValue;
+
+	cout << "Total Score is:  " << totalScore << endl;
+
+	bool inUpperSection = std::find(
+		std::begin(_upperSectionOptions), std::end(_upperSectionOptions), selectedScoreType) != std::end(_upperSectionOptions);
+
+	if (inUpperSection) upperSectionTotal += scoreOption.scoredValue;
+
+	// TODO: move this to discrete display score method
+	if (upperSectionTotal >= NEEDED_FOR_UPPER_BONUS){
+			cout << "You have reached the Upper Section Bonus!" << endl;
+	}
+}
+
+bool ScoreCard::scoringSelectionIsValid(int scoringSelection){
+	ScoreType selectedScoreType = static_cast<ScoreType>(scoringSelection);
+	return !(_playerOptions[selectedScoreType].isScored);
 }
 
 void ScoreCard::initScoringOptions(){

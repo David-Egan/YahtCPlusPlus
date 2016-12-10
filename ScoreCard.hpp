@@ -27,6 +27,17 @@ class ScoreCard{
 		static const int SMALL_STRAIGHT_VAL = 30;
 		static const int LARGE_STRAIGHT_VAL = 40;
 		static const int YAHTZEE_VAL = 50;
+		static const int UPPER_SECTION_BONUS = 35;
+		const std::array<ScoreType, 6> _upperSectionOptions = {{
+			ScoreType::AcesSum,
+			ScoreType::TwosSum,
+			ScoreType::ThreesSum,
+			ScoreType::FoursSum,
+			ScoreType::FivesSum,
+			ScoreType::SixesSum,
+		}};
+		const int NEEDED_FOR_UPPER_BONUS = 63;
+		int upperSectionTotal;
 		std::map<ScoreType, std::string> _scoringOptions;
 		std::map<ScoreType, PlayerScoreOption> _playerOptions;
 		void updateOptionsValues();
@@ -34,8 +45,10 @@ class ScoreCard{
 		void initPlayerOptions();
 	public:
 		ScoreCard(Dice &dice);
+		bool scoringSelectionIsValid(int scoringSelection);
 		// Show user all their options for scoring this turn
 		void displayScoringOptions();
+		int totalScore;
 		// Get point value of scoring with a certain value
 		// ex. three 5's on the dice would return 15
 		int getValueSum(int value);
