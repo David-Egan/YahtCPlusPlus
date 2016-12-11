@@ -15,7 +15,6 @@ void ScoreCard::displayScoringOptions(){
 
 	auto scoreIt = _scoringOptions.begin();
 	auto playerIt = _playerOptions.begin();
-
 	while (scoreIt != _scoringOptions.end()){
 		if (!playerIt->second.isScored){
 			cout << scoreIt->first << ". " << scoreIt->second << "  ["
@@ -74,18 +73,19 @@ int ScoreCard::getSumOfDice(){
 void ScoreCard::selectScoringOption(int selection){
 	ScoreType selectedScoreType = static_cast<ScoreType>(selection);
 
-	PlayerScoreOption scoreOption = _playerOptions[selectedScoreType];
-	scoreOption.isScored = true;
-	scoreOption.scoredValue = scoreOption.possibleValue;
+	PlayerScoreOption *scoreOption = &_playerOptions[selectedScoreType];
+	scoreOption->isScored = true;
+	scoreOption->scoredValue = scoreOption->possibleValue;
 
-	totalScore += scoreOption.scoredValue;
+	totalScore += scoreOption->scoredValue;
 
 	cout << "Total Score is:  " << totalScore << endl;
 
 	bool inUpperSection = std::find(
-		std::begin(_upperSectionOptions), std::end(_upperSectionOptions), selectedScoreType) != std::end(_upperSectionOptions);
+		std::begin(_upperSectionOptions),
+		std::end(_upperSectionOptions), selectedScoreType) != std::end(_upperSectionOptions);
 
-	if (inUpperSection) upperSectionTotal += scoreOption.scoredValue;
+	if (inUpperSection) upperSectionTotal += scoreOption->scoredValue;
 
 	// TODO: move this to discrete display score method
 	if (upperSectionTotal >= NEEDED_FOR_UPPER_BONUS){
@@ -94,8 +94,21 @@ void ScoreCard::selectScoringOption(int selection){
 }
 
 bool ScoreCard::scoringSelectionIsValid(int scoringSelection){
+	if (scoringSelection > _playerOptions.size() || scoringSelection <= 0){
+		return false;
+	}
 	ScoreType selectedScoreType = static_cast<ScoreType>(scoringSelection);
+
 	return !(_playerOptions[selectedScoreType].isScored);
+}
+
+bool ScoreCard::isScoreCardFull(){
+	auto playerIt = _playerOptions.begin();
+	for ( ; playerIt != _playerOptions.end(); playerIt++){
+		if (!playerIt->second.isScored) return false;
+	}
+
+	return true;
 }
 
 void ScoreCard::initScoringOptions(){
@@ -110,7 +123,7 @@ void ScoreCard::initScoringOptions(){
 	_scoringOptions[ScoreType::FullHouse] = "Full House";
 	_scoringOptions[ScoreType::SmallStraight] = "Small Straight";
 	_scoringOptions[ScoreType::LargeStraight] = "Large Straight";
-  _scoringOptions[ScoreType::Chance] = "Chance";
+  	_scoringOptions[ScoreType::Chance] = "Chance";
 	_scoringOptions[ScoreType::Yahtzee] = "Yahtzee";
 }
 

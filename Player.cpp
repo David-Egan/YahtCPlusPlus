@@ -15,8 +15,8 @@ string Player::getPlayerName(){
 	return _playerName;
 }
 
-bool Player::isScoreCardFull(){
-
+bool Player::hasNoMoreMoves(){
+	return _scoreCard.isScoreCardFull();
 }
 
 void Player::displayScoringOptions(){

@@ -45,6 +45,7 @@ class ScoreCard{
 		void initPlayerOptions();
 	public:
 		ScoreCard(Dice &dice);
+		bool isScoreCardFull();
 		bool scoringSelectionIsValid(int scoringSelection);
 		// Show user all their options for scoring this turn
 		void displayScoringOptions();

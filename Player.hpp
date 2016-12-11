@@ -22,6 +22,7 @@ class Player{
 		Player(std::string playerName, Dice &dice, GameBoard &gameBoard);
 		// Begin this players turn
 		void startTurn();
+		bool hasNoMoreMoves();
 		// Getter for player name
 		std::string getPlayerName();
 		// Check if this player has used up all scoring options
