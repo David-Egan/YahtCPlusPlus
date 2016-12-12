@@ -51,6 +51,25 @@ void ScoreCard::updateOptionsValues(){
 							_dice.hasYahtzee() ? YAHTZEE_VAL : 0;
 
 	_playerOptions[ScoreType::Chance].possibleValue = sumOfDice;
+
+	// The complicated part of Yahtzee when you get a Yahtzee after already
+	// having scored a Yahtzee.  Used https://cardgames.io/yahtzee/#rules for reference.
+	if (_playerOptions[ScoreType::Yahtzee].scoredValue > 0 && _dice.hasYahtzee()){
+		cout << "BONUS YAHTZEE! You have received 100 points and can choose from "
+		 	<< "the following options" << endl;
+		totalScore += 100;
+		updateOptionsForJokerYahztzee();
+	}
+}
+
+void ScoreCard::updateOptionsForJokerYahztzee(){
+	int sumOfDice = getSumOfDice();
+
+	_playerOptions[ScoreType::ThreeOfAKind].possibleValue = sumOfDice;
+	_playerOptions[ScoreType::FourOfAKind].possibleValue =	sumOfDice;
+	_playerOptions[ScoreType::FullHouse].possibleValue = FULL_HOUSE_VAL;
+	_playerOptions[ScoreType::SmallStraight].possibleValue = SMALL_STRAIGHT_VAL;
+	_playerOptions[ScoreType::LargeStraight].possibleValue = LARGE_STRAIGHT_VAL;
 }
 
 int ScoreCard::getValueSum(int value){

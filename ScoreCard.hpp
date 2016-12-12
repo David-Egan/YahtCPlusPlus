@@ -41,6 +41,9 @@ class ScoreCard{
 		std::map<ScoreType, std::string> _scoringOptions;
 		std::map<ScoreType, PlayerScoreOption> _playerOptions;
 		void updateOptionsValues();
+		// Handle extra scoring opportunity when a Yahtzee is rolled and
+		// a Yahtzee has already been scored
+		void updateOptionsForJokerYahztzee();
 		void initScoringOptions();
 		void initPlayerOptions();
 	public:

@@ -15,8 +15,8 @@ enum class ScoreType : unsigned int{
 	FullHouse,
 	SmallStraight,
 	LargeStraight,
-	Yahtzee,
-	Chance
+	Chance,
+	Yahtzee
 };
 
 // TODO: figure out why exactly this needs to be inline
