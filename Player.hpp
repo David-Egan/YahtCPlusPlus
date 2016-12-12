@@ -20,6 +20,7 @@ class Player{
 		void chooseDiceToKeep(std::vector<int> &diceToKeep);
 	public:
 		Player(std::string playerName, Dice &dice, GameBoard &gameBoard);
+		int getScore();
 		// Begin this players turn
 		void startTurn();
 		bool hasNoMoreMoves();

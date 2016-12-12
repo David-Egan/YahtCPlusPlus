@@ -14,6 +14,7 @@ class GameBoard{
 		std::vector<Player*> _players;
 		// Check if the players have moves left ie. scorecard has a spot
 		// that can be filled.
+		void endGame();
 		bool playerMovesRemaining();
 	public:
 		// Set up board for a game.

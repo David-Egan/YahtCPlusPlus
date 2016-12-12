@@ -8,11 +8,14 @@ using namespace std;
 Player::Player(string playerName, Dice &dice, GameBoard &gameBoard)
 			: _playerName(playerName), _dice(dice), _gameBoard(gameBoard),
 			  _scoreCard(ScoreCard(dice)){
-	cout << "player constructor called\n";
 }
 
 string Player::getPlayerName(){
 	return _playerName;
+}
+
+int Player::getScore(){
+	_scoreCard.getTotalScore();
 }
 
 bool Player::hasNoMoreMoves(){
@@ -38,13 +41,17 @@ void Player::startTurn(){
 
 	while (rollsLeft >= 0 && !selectionMade){
 		cout << "Choose how you want your dice to be scored or Re-roll" << endl;
-		if (rollsLeft > 0 ) { cout << "0. Re-roll\n"; }
+		if (rollsLeft > 0 ) {
+			cout << "0. Re-roll" << " {" << rollsLeft << " ROLL(S) LEFT}\n";
+		}
 		displayScoringOptions();
 
-		cout << rollsLeft << " roll(s) left\n";
 		selectionMade = makeScoringSelection(rollsLeft, diceToKeep);
 		diceToKeep.clear();
 	}
+
+	cout << _playerName << "'s score is now: " << _scoreCard.getTotalScore()
+		 << endl;
 }
 
 
@@ -55,8 +62,9 @@ bool Player::makeScoringSelection(int &rollsLeft, vector<int> &diceToKeep){
 
 	cin >> scoringSelection;
 
+	// TODO: clean this up
 	while ( (!rollsLeft && scoringSelection == 0) ||
-	 		!_scoreCard.scoringSelectionIsValid(scoringSelection)){
+	 		(scoringSelection != 0 && !_scoreCard.scoringSelectionIsValid(scoringSelection))){
 		cout << "Pick a valid scoring option\n";
 		cin >> scoringSelection;
 	}

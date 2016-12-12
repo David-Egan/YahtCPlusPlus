@@ -5,9 +5,12 @@
 using namespace std;
 
 ScoreCard::ScoreCard(Dice &dice): _dice(dice) {
-	cout << "ScoreCard constructor called" << endl;
 	initScoringOptions();
 	initPlayerOptions();
+}
+
+int ScoreCard::getTotalScore(){
+	return totalScore;
 }
 
 void ScoreCard::displayScoringOptions(){
@@ -23,7 +26,6 @@ void ScoreCard::displayScoringOptions(){
 				 scoreIt++;
 				 playerIt++;
 	}
-
 }
 
 void ScoreCard::updateOptionsValues(){
@@ -78,8 +80,6 @@ void ScoreCard::selectScoringOption(int selection){
 	scoreOption->scoredValue = scoreOption->possibleValue;
 
 	totalScore += scoreOption->scoredValue;
-
-	cout << "Total Score is:  " << totalScore << endl;
 
 	bool inUpperSection = std::find(
 		std::begin(_upperSectionOptions),
